@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adhyay Foundation — A quiet space to understand yourself</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%231f3d2b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#1f3d2b;
+    --forest-deep:#152a1e;
+    --sage:#8ba48a;
+    --olive:#6b7654;
+    --cream:#f7f3e9;
+    --ivory:#fbf8f1;
+    --gold:#c99a4a;
+    --gold-soft:#e3c78a;
+    --ink:#243228;
+    --ink-soft:#5b6b5c;
+    --line: rgba(31,61,43,0.12);
+    --radius:22px;
+    --shadow: 0 20px 60px -20px rgba(31,61,43,0.25);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Manrope',sans-serif;
+    color:var(--ink);
+    background:var(--ivory);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4,.serif{font-family:'Fraunces',serif;}
+  .eyebrow{
+    font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold);
+    font-weight:600;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  button{font-family:inherit;cursor:pointer;}
+  ::selection{background:var(--sage);color:#fff;}
+
+  /* ===== NAV ===== */
+  header.site-nav{
+    position:fixed;top:0;left:0;right:0;z-index:500;
+    background:rgba(251,248,241,0.82);
+    backdrop-filter: blur(14px);
+    border-bottom:1px solid var(--line);
+    transition:background .4s ease;
+  }
+  .nav-inner{
+    max-width:1180px;margin:0 auto;padding:16px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:20px;color:var(--forest);text-decoration:none;}
+  .brand .logo-mark{width:34px;height:34px;}
+  .nav-links{display:flex;gap:32px;align-items:center;font-size:14.5px;font-weight:500;color:var(--ink-soft);}
+  .nav-links a{text-decoration:none;transition:color .2s;cursor:pointer;}
+  .nav-links a:hover{color:var(--forest);}
+  .nav-right{display:flex;align-items:center;gap:12px;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:13px 26px;border-radius:100px;font-weight:600;font-size:14.5px;
+    border:1px solid transparent;transition:all .25s ease;text-decoration:none;
+  }
+  .btn-primary{background:var(--forest);color:var(--ivory);box-shadow:0 10px 30px -10px rgba(31,61,43,0.55);}
+  .btn-primary:hover{background:var(--forest-deep);transform:translateY(-2px);}
+  .btn-ghost{background:transparent;color:var(--forest);border-color:var(--line);}
+  .btn-ghost:hover{background:rgba(31,61,43,0.06);}
+  .btn-text{background:none;border:none;color:var(--ink-soft);font-size:14px;font-weight:600;}
+  .btn-text:hover{color:var(--forest);}
+  .btn-light{background:var(--ivory);color:var(--forest);}
+  .btn-light:hover{background:#fff;transform:translateY(-2px);}
+  .btn-sm{padding:10px 18px;font-size:13.5px;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;
+    overflow:hidden;background:linear-gradient(180deg,#12261b 0%, #1f3d2b 42%, #3a5240 100%);
+  }
+  .hero-glow{
+    position:absolute;left:50%;bottom:8%;transform:translateX(-50%);
+    width:520px;height:520px;border-radius:50%;
+    background:radial-gradient(circle, rgba(227,199,138,.55) 0%, rgba(227,199,138,0.12) 45%, transparent 70%);
+    filter:blur(10px);
+    animation:sunrise-pulse 8s ease-in-out infinite;
+  }
+  @keyframes sunrise-pulse{0%,100%{opacity:.75;transform:translateX(-50%) scale(1);}50%{opacity:1;transform:translateX(-50%) scale(1.08);}}
+  .hero-sun{
+    position:absolute;left:50%;bottom:16%;transform:translateX(-50%);
+    width:150px;height:150px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #fff7e0, #e3c78a 60%, #c99a4a 100%);
+    box-shadow:0 0 90px 20px rgba(227,199,138,.4);
+  }
+  .hero-mountains{position:absolute;bottom:0;left:0;right:0;width:100%;}
+  .hero-mountains svg{width:100%;display:block;}
+  .hero-rays{position:absolute;inset:0;background:repeating-conic-gradient(from 200deg at 50% 78%, rgba(255,244,214,.05) 0deg 6deg, transparent 6deg 12deg);animation:rotate-rays 60s linear infinite;opacity:.5;}
+  @keyframes rotate-rays{to{transform:rotate(360deg);}}
+  .leaf{position:absolute;opacity:.55;animation:leaf-float linear infinite;}
+  @keyframes leaf-float{
+    0%{transform:translateY(0) translateX(0) rotate(0deg);opacity:0;}
+    10%{opacity:.6;}
+    90%{opacity:.5;}
+    100%{transform:translateY(-110vh) translateX(40px) rotate(220deg);opacity:0;}
+  }
+  .hero-content{position:relative;z-index:5;text-align:center;color:#fbf8f1;padding:0 24px;max-width:760px;}
+  .hero-logo{width:56px;height:56px;margin:0 auto 22px;animation:fade-up 1.1s ease both;}
+  .hero-eyebrow{
+    font-family:'Manrope',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--gold-soft);font-weight:700;margin:0 0 18px;animation:fade-up 1.1s .05s ease both;
+  }
+  .hero-content h1{
+    font-size:clamp(32px,5.4vw,56px);font-weight:500;letter-spacing:.005em;margin:0 0 14px;line-height:1.15;
+    animation:fade-up 1.1s .1s ease both;
+  }
+  .hero-tagline{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    font-size:clamp(17px,2.2vw,22px);color:var(--gold-soft);margin:0 0 22px;
+    animation:fade-up 1.1s .2s ease both;
+  }
+  .hero-desc{
+    font-size:16.5px;line-height:1.75;color:rgba(251,248,241,.82);max-width:560px;margin:0 auto 38px;
+    animation:fade-up 1.1s .3s ease both;
+  }
+  .hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fade-up 1.1s .4s ease both;}
+  @keyframes fade-up{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+  .scroll-cue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:5;color:rgba(251,248,241,.6);font-size:12px;letter-spacing:.15em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px;animation:bob 2.4s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,8px);}}
+
+  /* ===== SECTION GENERIC ===== */
+  section{padding:120px 0;position:relative;}
+  .section-head{max-width:640px;margin:0 auto 64px;text-align:center;}
+  .section-head h2{font-size:clamp(30px,4vw,44px);font-weight:500;color:var(--forest);margin:14px 0 16px;}
+  .section-head p{color:var(--ink-soft);font-size:16.5px;line-height:1.75;}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease, transform .9s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ===== CHOOSE SESSION ===== */
+  .sessions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .sessions-grid .session-card:nth-child(4), .sessions-grid .session-card:nth-child(5){grid-column:span 1;}
+  .session-card{
+    background:#fff;border-radius:20px;padding:30px 26px;border:1px solid var(--line);
+    text-align:left;transition:all .3s ease;box-shadow:0 10px 30px -20px rgba(31,61,43,.2);
+  }
+  .session-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--sage);}
+  .session-card .tag{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);font-weight:700;margin-bottom:10px;display:block;}
+  .session-card h3{font-size:20px;color:var(--forest);margin:0 0 10px;font-weight:600;}
+  .session-card p{font-size:14px;color:var(--ink-soft);line-height:1.65;margin:0 0 18px;min-height:66px;}
+  .session-card button{background:none;border:none;color:var(--forest);font-weight:700;font-size:14px;display:flex;align-items:center;gap:6px;padding:0;}
+  .session-card button:hover{color:var(--gold);}
+
+  /* ===== ABOUT ===== */
+  .about{background:var(--cream);}
+  .about-badges{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:70px;}
+  .badge{display:flex;flex-direction:column;align-items:center;gap:10px;font-size:13.5px;font-weight:600;color:var(--forest);text-align:center;width:150px;}
+  .badge .ic{width:52px;height:52px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);}
+  .about-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+  .about-card{
+    background:#fff;border-radius:var(--radius);padding:28px 22px;text-align:left;
+    box-shadow:0 10px 30px -18px rgba(31,61,43,0.2);border:1px solid var(--line);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .about-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);}
+  .about-card .ic{width:40px;height:40px;border-radius:12px;background:var(--forest);color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+  .about-card h4{font-size:15.5px;margin:0 0 6px;color:var(--forest);font-family:'Manrope',sans-serif;font-weight:700;}
+  .about-card p{font-size:13.5px;color:var(--ink-soft);line-height:1.6;margin:0;}
+
+  .approach{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;margin-top:100px;}
+  .approach-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:22px;}
+  .approach-steps li{display:flex;gap:16px;align-items:flex-start;}
+  .approach-steps .num{font-family:'Fraunces',serif;font-size:15px;color:var(--gold);font-weight:600;flex-shrink:0;width:28px;}
+  .approach-steps strong{display:block;color:var(--forest);font-size:16px;margin-bottom:3px;}
+  .approach-steps span{color:var(--ink-soft);font-size:14px;}
+  .approach-visual{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:1/1;background:linear-gradient(160deg,#2c4a35,#1f3d2b);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);}
+
+  /* ===== HOW IT WORKS TIMELINE ===== */
+  .timeline{position:relative;max-width:760px;margin:0 auto;}
+  .timeline::before{content:'';position:absolute;left:27px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--sage),var(--gold-soft));opacity:.5;}
+  .t-item{position:relative;padding-left:80px;margin-bottom:52px;}
+  .t-item:last-child{margin-bottom:0;}
+  .t-dot{position:absolute;left:0;top:0;width:56px;height:56px;border-radius:50%;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);color:var(--forest);}
+  .t-item h4{margin:6px 0 8px;font-size:19px;color:var(--forest);font-weight:600;}
+  .t-item p{margin:0;color:var(--ink-soft);font-size:14.5px;line-height:1.7;max-width:520px;}
+
+  /* ===== EMOTION SHOWCASE ===== */
+  .emotion-band{background:var(--forest);color:var(--ivory);border-radius:36px;margin:0 32px;padding:80px 56px;position:relative;overflow:hidden;}
+  .emotion-band::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 85% 15%, rgba(227,199,138,.16), transparent 55%);}
+  .emotion-band .section-head h2, .emotion-band .section-head p{color:var(--ivory);}
+  .emotion-band .section-head p{color:rgba(251,248,241,.75);}
+  .emotion-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;position:relative;z-index:2;}
+  .emo-card{
+    background:rgba(251,248,241,0.06);border:1px solid rgba(251,248,241,0.14);border-radius:18px;
+    padding:22px 16px;text-align:left;color:var(--ivory);transition:all .3s ease;cursor:pointer;
+  }
+  .emo-card:hover{background:rgba(251,248,241,0.14);transform:translateY(-5px);border-color:rgba(227,199,138,.5);}
+  .emo-card .ic{font-size:22px;margin-bottom:14px;}
+  .emo-card h4{font-size:14.5px;margin:0 0 4px;font-weight:600;}
+  .emo-card span{font-size:12px;color:rgba(251,248,241,.55);}
+  .emotion-band .cta-row{text-align:center;margin-top:44px;position:relative;z-index:2;}
+
+  /* ===== TEAM ===== */
+  .team-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:26px;}
+  .team-card{text-align:center;}
+  .team-avatar{width:84px;height:84px;border-radius:50%;margin:0 auto 14px;background:linear-gradient(160deg,var(--sage),var(--forest));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Fraunces',serif;font-size:24px;}
+  .team-card h4{margin:0 0 2px;font-size:15px;color:var(--forest);}
+  .team-card .role{font-size:12px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;}
+  .team-card p{font-size:13px;color:var(--ink-soft);line-height:1.6;}
+
+  /* ===== FAQ ===== */
+  .faq{max-width:760px;margin:0 auto;}
+  .faq-item{border-bottom:1px solid var(--line);padding:22px 0;cursor:pointer;}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--forest);font-size:16px;}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .faq-a p{color:var(--ink-soft);font-size:14.5px;line-height:1.7;padding-top:14px;margin:0;}
+  .faq-item.open .faq-a{max-height:220px;}
+  .faq-item.open .chev{transform:rotate(45deg);}
+  .chev{transition:transform .3s ease;font-size:20px;color:var(--gold);}
+
+  /* ===== FOOTER ===== */
+  footer{background:var(--forest-deep);color:rgba(251,248,241,.7);padding:70px 0 30px;}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:50px;}
+  .footer-brand{display:flex;align-items:center;gap:10px;color:#fff;font-family:'Fraunces',serif;font-size:19px;margin-bottom:14px;}
+  .footer-grid h5{color:#fff;font-size:13px;text-transform:uppercase;letter-spacing:.1em;margin:0 0 16px;}
+  .footer-grid ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;font-size:14px;}
+  .footer-grid a{text-decoration:none;color:rgba(251,248,241,.65);transition:color .2s;cursor:pointer;}
+  .footer-grid a:hover{color:var(--gold-soft);}
+  .footer-bottom{border-top:1px solid rgba(251,248,241,.1);padding-top:26px;display:flex;justify-content:space-between;font-size:12.5px;color:rgba(251,248,241,.45);flex-wrap:wrap;gap:10px;}
+
+  /* ===== APP OVERLAY ===== */
+  .app-overlay{
+    position:fixed;inset:0;z-index:1000;background:var(--ivory);
+    transform:translateY(100%);transition:transform .5s cubic-bezier(.65,0,.35,1);
+    overflow-y:auto;
+  }
+  .app-overlay.active{transform:translateY(0);}
+  .app-topbar{position:sticky;top:0;background:rgba(251,248,241,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;z-index:5;}
+  .app-topbar .brand{font-size:16px;}
+  .close-app{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--ink-soft);transition:all .2s;}
+  .close-app:hover{background:var(--forest);color:#fff;}
+  .app-progress-track{height:4px;background:var(--line);width:100%;}
+  .app-progress-bar{height:100%;background:linear-gradient(90deg,var(--sage),var(--gold));transition:width .5s ease;width:0%;}
+  .app-stage{display:none;min-height:calc(100vh - 60px);align-items:center;justify-content:center;padding:60px 24px;}
+  .app-stage.active{display:flex;}
+  .stage-inner{max-width:600px;width:100%;text-align:center;animation:fade-up .6s ease both;}
+  .stage-inner.wide{max-width:860px;}
+  .step-label{font-size:12.5px;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:10px;}
+  .stage-inner h2{font-size:clamp(24px,3.6vw,34px);color:var(--forest);font-weight:500;margin:0 0 14px;}
+  .stage-inner .sub{color:var(--ink-soft);font-size:15px;margin-bottom:38px;}
+  .choice-list{display:flex;flex-direction:column;gap:12px;text-align:left;}
+  .choice-card{
+    display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:16px;border:1px solid var(--line);
+    background:#fff;transition:all .25s ease;
+  }
+  .choice-card:hover, .choice-card.selected{border-color:var(--sage);background:var(--cream);transform:translateX(4px);}
+  .choice-card .ic{width:38px;height:38px;border-radius:10px;background:var(--forest);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;}
+  .choice-card .txt strong{display:block;color:var(--forest);font-size:15px;}
+  .choice-card .txt span{font-size:12.5px;color:var(--ink-soft);}
+  .plain-choice{padding:18px 22px;border-radius:14px;border:1px solid var(--line);background:#fff;font-size:15px;color:var(--ink);text-align:left;transition:all .25s ease;}
+  .plain-choice:hover,.plain-choice.selected{border-color:var(--sage);background:var(--cream);}
+  .stage-nav{display:flex;justify-content:space-between;align-items:center;margin-top:36px;gap:14px;}
+  textarea.reflect-box{
+    width:100%;min-height:110px;border-radius:16px;border:1px solid var(--line);padding:18px;
+    font-family:'Manrope',sans-serif;font-size:15px;color:var(--ink);resize:vertical;outline:none;background:#fdfbf6;
+  }
+  textarea.reflect-box:focus{border-color:var(--sage);}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+  .chip-btn{padding:8px 14px;border-radius:100px;border:1px solid var(--line);background:var(--cream);font-size:12.5px;color:var(--ink-soft);transition:all .2s;text-align:left;}
+  .chip-btn:hover{border-color:var(--sage);background:#fff;color:var(--forest);}
+  .text-q-block{text-align:left;background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:16px;}
+  .text-q-block label{display:block;color:var(--forest);font-weight:600;font-size:15.5px;margin-bottom:12px;}
+  input.reflect-field{width:100%;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-family:inherit;font-size:14.5px;outline:none;}
+  input.reflect-field:focus{border-color:var(--sage);}
+
+  /* recommendation card */
+  .rec-card{background:#fff;border-radius:26px;box-shadow:var(--shadow);border:1px solid var(--line);overflow:hidden;text-align:left;}
+  .rec-visual{height:150px;background:linear-gradient(160deg,#2c4a35,#1f3d2b);position:relative;display:flex;align-items:center;justify-content:center;}
+  .rec-body{padding:34px;}
+  .rec-body h3{font-size:24px;color:var(--forest);margin:0 0 4px;}
+  .rec-body .rec-focus{font-size:12.5px;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:20px;display:block;}
+  .rec-block{margin-bottom:18px;}
+  .rec-block h5{margin:0 0 6px;font-size:14px;color:var(--forest);}
+  .rec-block p{color:var(--ink-soft);font-size:14px;line-height:1.7;margin:0;}
+  .rec-meta{display:flex;gap:22px;font-size:13px;color:var(--ink-soft);margin:18px 0 0;}
+  .rec-meta span{display:flex;align-items:center;gap:6px;}
+
+  /* breathing circle */
+  .breathe-wrap{display:flex;flex-direction:column;align-items:center;gap:26px;}
+  .breathe-ring{
+    width:210px;height:210px;border-radius:50%;position:relative;
+    display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(circle, rgba(139,164,138,.25), transparent 70%);
+  }
+  .breathe-ring::before{
+    content:'';position:absolute;inset:0;border-radius:50%;
+    background:radial-gradient(circle, var(--sage), var(--forest));
+    animation:breathe 12s ease-in-out infinite;opacity:.85;
+  }
+  @keyframes breathe{
+    0%,100%{transform:scale(.72);}
+    33%{transform:scale(1);}
+    50%{transform:scale(1);}
+    83%{transform:scale(.72);}
+  }
+  .breathe-core{position:relative;z-index:2;color:#fff;font-family:'Fraunces',serif;}
+  .breathe-core .phase{font-size:18px;font-weight:500;}
+  .breathe-core .count{font-size:32px;font-weight:600;}
+  .ambient-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+  .ambient-btn{padding:9px 16px;border-radius:100px;border:1px solid var(--line);background:#fff;font-size:13px;color:var(--ink-soft);transition:all .2s;}
+  .ambient-btn.active{background:var(--forest);color:#fff;border-color:var(--forest);}
+
+  /* insight card */
+  .insight-card{
+    background:linear-gradient(160deg,#fdfbf6,var(--cream));border-radius:26px;padding:44px 38px;
+    border:1px solid var(--line);box-shadow:var(--shadow);position:relative;text-align:left;
+  }
+  .insight-card .quote-mark{font-family:'Fraunces',serif;font-size:64px;color:var(--gold-soft);line-height:.4;margin-bottom:18px;display:block;}
+  .insight-card p.insight-text{font-family:'Fraunces',serif;font-size:19px;line-height:1.6;color:var(--forest);font-weight:400;}
+  .insight-tag{display:inline-block;margin-top:20px;font-size:12px;color:var(--ink-soft);letter-spacing:.06em;text-transform:uppercase;font-weight:600;}
+
+  /* micro action */
+  .action-card{background:var(--forest);color:#fff;border-radius:26px;padding:44px 38px;text-align:center;}
+  .action-card .ic-big{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px;}
+  .action-card h3{font-size:22px;margin:0 0 12px;font-family:'Fraunces',serif;font-weight:500;}
+  .action-card p{color:rgba(251,248,241,.75);font-size:15px;line-height:1.7;max-width:420px;margin:0 auto;}
+
+  /* exercise: sort */
+  .sort-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:30px;}
+  .sort-col{border:1.5px dashed var(--line);border-radius:16px;padding:16px;min-height:130px;background:#fdfbf6;text-align:left;}
+  .sort-col h5{margin:0 0 10px;color:var(--forest);font-size:14px;}
+  .sort-col .placed{background:var(--cream);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:12px;color:var(--forest);margin-bottom:6px;}
+  .thought-row{margin-bottom:8px;text-align:left;}
+  .thought-pills{display:flex;gap:8px;flex-wrap:wrap;}
+  .thought-pill{border:1px solid var(--line);background:var(--cream);border-radius:100px;padding:8px 14px;font-size:12.5px;color:var(--forest);transition:all .2s;}
+  .thought-pill:hover{background:var(--sage);color:#fff;}
+  .thought-pill.used{opacity:.35;pointer-events:none;}
+  .sort-hint{font-size:13px;color:var(--ink-soft);margin-bottom:18px;}
+
+  /* completion */
+  .complete-wrap{position:relative;}
+  .float-leaf{position:absolute;font-size:20px;opacity:.6;animation:leaf-float linear infinite;}
+  .check-badge{width:74px;height:74px;border-radius:50%;background:var(--forest);color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 24px;}
+
+  /* signup */
+  .auth-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:40px;box-shadow:var(--shadow);text-align:left;}
+  .auth-field{margin-bottom:18px;}
+  .auth-field label{display:block;font-size:13.5px;font-weight:600;color:var(--forest);margin-bottom:8px;}
+  .auth-field input{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px 16px;font-family:inherit;font-size:14.5px;outline:none;transition:border-color .2s;}
+  .auth-field input:focus{border-color:var(--sage);}
+  .auth-field input.error{border-color:#c0554a;}
+  .auth-error{color:#c0554a;font-size:12.5px;margin-top:6px;display:none;}
+  .auth-field.has-error .auth-error{display:block;}
+  .auth-success{
+    display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:10px 0 4px;
+  }
+  .auth-success .check-badge{width:60px;height:60px;font-size:26px;margin:0;}
+  .auth-success h3{margin:0;color:var(--forest);font-size:19px;}
+  .auth-success p{margin:0;color:var(--ink-soft);font-size:14px;line-height:1.6;}
+
+  /* dashboard */
+  .dash-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:22px;text-align:left;}
+  .dash-card{background:#fff;border-radius:20px;border:1px solid var(--line);padding:26px;box-shadow:0 10px 30px -20px rgba(31,61,43,.25);}
+  .dash-card h4{margin:0 0 16px;color:var(--forest);font-size:15px;}
+  .tree-svg{width:100%;max-width:280px;margin:0 auto;display:block;}
+  .stat-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px dashed var(--line);font-size:14px;}
+  .stat-row:last-child{border-bottom:none;}
+  .stat-row strong{color:var(--forest);}
+  .mood-row{display:flex;gap:8px;margin-top:10px;}
+  .mood-dot{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;background:#fff;}
+  .mood-dot.selected{background:var(--forest);border-color:var(--forest);}
+  .session-item{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-size:13.5px;}
+  .session-item:last-child{border:none;}
+  .empty-msg{color:var(--ink-soft);font-size:13.5px;text-align:center;padding:20px 0;}
+
+  @media(max-width:960px){
+    .about-grid{grid-template-columns:repeat(2,1fr);}
+    .emotion-cards{grid-template-columns:repeat(2,1fr);}
+    .sessions-grid{grid-template-columns:repeat(2,1fr);}
+    .sort-cols{grid-template-columns:1fr;}
+    .approach{grid-template-columns:1fr;}
+    .team-grid{grid-template-columns:repeat(2,1fr);}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .dash-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+  }
+  @media(prefers-reduced-motion: reduce){
+    *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ LOGO (inline SVG symbol reused everywhere) ============ -->
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="adhyay-logo" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="4"/>
+    <path d="M50 24 L50 62 M50 34 L38 26 M50 34 L62 26 M50 44 L40 38 M50 44 L60 38 M50 52 L42 47 M50 52 L58 47" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <circle cx="32" cy="30" r="4" fill="currentColor"/>
+    <circle cx="42" cy="22" r="3.5" fill="currentColor"/>
+    <circle cx="58" cy="22" r="3.5" fill="currentColor"/>
+    <circle cx="68" cy="30" r="4" fill="currentColor"/>
+    <circle cx="36" cy="40" r="3" fill="currentColor"/>
+    <circle cx="64" cy="40" r="3" fill="currentColor"/>
+    <path d="M20 74 Q35 68 50 74 T80 74" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<!-- ============ NAV ============ -->
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand"><svg class="logo-mark" style="color:var(--forest)"><use href="#adhyay-logo"/></svg> Adhyay</a>
+    <nav class="nav-links">
+      <a href="#sessions">Sessions</a>
+      <a href="#about">About</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-right">
+      <button class="btn-text" onclick="openApp('signup')">Login</button>
+      <button class="btn btn-primary btn-sm" onclick="openApp('signup')">Sign Up</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<div id="top" class="hero">
+  <div class="hero-rays"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-sun"></div>
+  <div class="hero-mountains">
+    <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="#213f2c" opacity="0.9" d="M0,224 L120,192 L260,240 L400,176 L560,232 L700,168 L860,224 L1000,184 L1160,232 L1300,192 L1440,224 L1440,320 L0,320 Z"></path><path fill="#152a1e" d="M0,272 L160,232 L320,272 L480,216 L640,264 L800,208 L960,264 L1120,224 L1280,264 L1440,232 L1440,320 L0,320 Z"></path></svg>
+  </div>
+  <div id="leafField"></div>
+  <div class="hero-content">
+    <svg class="hero-logo" style="color:var(--gold-soft)"><use href="#adhyay-logo"/></svg>
+    <p class="hero-eyebrow">Adhyay Foundation &middot; From Overwhelmed &rarr; To Clear</p>
+    <h1>A quiet space to<br>understand yourself.</h1>
+    <p class="hero-tagline">Choose what you're feeling. Adhyay guides you to clarity.</p>
+    <p class="hero-desc">Guided reflection experiences designed to help you move from confusion to clarity — not another app to consume, but a structured way to think.</p>
+    <div class="hero-btns">
+      <button class="btn btn-light" onclick="document.getElementById('sessions').scrollIntoView({behavior:'smooth'})">Try a Session</button>
+      <button class="btn btn-ghost" style="color:#fbf8f1;border-color:rgba(251,248,241,.35)" onclick="openApp('emotion')">What's Your Adhyay Today?</button>
+    </div>
+  </div>
+  <div class="scroll-cue">Scroll ↓</div>
+</div>
+
+<!-- ============ CHOOSE YOUR SESSION ============ -->
+<section id="sessions">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Choose your session</p>
+      <h2>Each session is designed for a specific emotional need</h2>
+      <p>Pick what feels right for this moment — one session, one mental state, one clear outcome.</p>
+    </div>
+    <div class="sessions-grid reveal" id="sessionsGrid"></div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">About Adhyay</p>
+      <h2>A guided space, not another app to scroll</h2>
+      <p>Adhyay Foundation is not a meditation app or a therapy platform — it's a guided thinking &amp; clarity system. Unlike platforms built only for relaxation, Adhyay focuses on understanding thoughts, structuring thinking, and encouraging decision-making.</p>
+    </div>
+    <div class="about-badges reveal">
+      <div class="badge"><div class="ic">🧘</div>Not a meditation app</div>
+      <div class="badge"><div class="ic">📄</div>Not just content</div>
+      <div class="badge"><div class="ic">🌱</div>A guided mental clarity experience</div>
+    </div>
+    <div class="about-grid reveal">
+      <div class="about-card"><div class="ic">◐</div><h4>Stress &amp; overwhelm</h4><p>When everything feels urgent at once, we help you find what actually needs you first.</p></div>
+      <div class="about-card"><div class="ic">↻</div><h4>Overthinking loops</h4><p>We interrupt the spiral with structure, so the same thought stops repeating.</p></div>
+      <div class="about-card"><div class="ic">◔</div><h4>Self-doubt</h4><p>We help you separate the anxious voice from the evidence in front of you.</p></div>
+      <div class="about-card"><div class="ic">◈</div><h4>Decision confusion</h4><p>Structured reflection narrows a hundred options down to one next step.</p></div>
+      <div class="about-card"><div class="ic">☁</div><h4>Emotional heaviness</h4><p>Naming what's weighing on you is often the first way to set part of it down.</p></div>
+    </div>
+
+    <div class="approach reveal">
+      <div>
+        <p class="eyebrow">Our approach</p>
+        <h2 style="color:var(--forest);font-size:32px;margin:12px 0 26px;">We guide you step-by-step through your thoughts</h2>
+        <ul class="approach-steps">
+          <li><span class="num">01</span><div><strong>Understand what you're feeling</strong><span>Name the emotion before trying to fix it.</span></div></li>
+          <li><span class="num">02</span><div><strong>Organize your mind</strong><span>Turn scattered thoughts into a structure you can see.</span></div></li>
+          <li><span class="num">03</span><div><strong>Gain clarity</strong><span>A compassionate reflection of the pattern, not a generic quote.</span></div></li>
+          <li><span class="num">04</span><div><strong>Take small, meaningful action</strong><span>One achievable step — never a checklist.</span></div></li>
+        </ul>
+      </div>
+      <div class="approach-visual">
+        <svg width="70%" viewBox="0 0 200 200"><circle cx="100" cy="100" r="70" fill="none" stroke="#e3c78a" stroke-width="1.5" opacity=".5"/><circle cx="100" cy="100" r="50" fill="none" stroke="#e3c78a" stroke-width="1.5" opacity=".7"/><use href="#adhyay-logo" x="60" y="60" width="80" height="80" style="color:#fbf8f1"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">How it works</p>
+      <h2>One conversation, seven quiet steps</h2>
+      <p>Every Adhyay session follows the same gentle arc — from naming a feeling to taking one small, real action.</p>
+    </div>
+    <div class="timeline reveal">
+      <div class="t-item"><div class="t-dot">1</div><h4>Choose your emotional state</h4><p>Start with what's true right now — overwhelmed, overthinking, doubting yourself, confused, or heavy.</p></div>
+      <div class="t-item"><div class="t-dot">2</div><h4>Answer a guided follow-up question</h4><p>Adhyay asks what's actually making it feel that way — adapting each question to your last answer.</p></div>
+      <div class="t-item"><div class="t-dot">3</div><h4>Receive a personalised session</h4><p>Based on what you shared, we recommend one specific session with a clear focus and duration.</p></div>
+      <div class="t-item"><div class="t-dot">4</div><h4>Breathe, first</h4><p>A slow, animated breathing circle brings your body down before we ask your mind to reflect.</p></div>
+      <div class="t-item"><div class="t-dot">5</div><h4>Reflect, one prompt at a time</h4><p>Short, structured prompts and one hands-on exercise — never one overwhelming blank page.</p></div>
+      <div class="t-item"><div class="t-dot">6</div><h4>Receive your insight</h4><p>A compassionate, specific reflection of the pattern in what you wrote.</p></div>
+      <div class="t-item"><div class="t-dot">7</div><h4>Take one small action</h4><p>A single achievable step for today — nothing more.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TODAY / EMOTION SHOWCASE ============ -->
+<section id="today">
+  <div class="wrap">
+    <div class="emotion-band reveal">
+      <div class="section-head">
+        <p class="eyebrow" style="color:var(--gold-soft)">The core experience</p>
+        <h2>"What's your Adhyay today?"</h2>
+        <p>Your mind knows how you feel. We help you understand it.</p>
+      </div>
+      <div class="emotion-cards" id="emotionCardsPreview"></div>
+      <div class="cta-row">
+        <button class="btn btn-light" onclick="openApp('emotion')">Try a Session</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section class="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Meet our team</p>
+      <h2>The passionate minds behind Adhyay Foundation</h2>
+    </div>
+    <div class="team-grid reveal">
+      <div class="team-card"><div class="team-avatar">SK</div><h4>Shravya Khandelwal</h4><div class="role">Founder</div><p>Leads the vision and core idea of Adhyay, shaping it into a platform for mental clarity and self-understanding.</p></div>
+      <div class="team-card"><div class="team-avatar">VA</div><h4>Vaidehi Agarwal</h4><div class="role">Co-Founder</div><p>Drives strategic development and helps bring the vision into practical, meaningful user experiences.</p></div>
+      <div class="team-card"><div class="team-avatar">SA</div><h4>Shlok Agarwal</h4><div class="role">CEO</div><p>Oversees operations and execution to ensure smooth functioning and strong growth of the platform.</p></div>
+      <div class="team-card"><div class="team-avatar">HB</div><h4>Havisha</h4><div class="role">CFO</div><p>Manages financial planning and long-term sustainability of Adhyay Foundation.</p></div>
+      <div class="team-card"><div class="team-avatar">ST</div><h4>Sidharth</h4><div class="role">CMO</div><p>Drives marketing strategy and helps bring Adhyay's message to the people who need it.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" style="background:var(--cream)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Frequently asked</p>
+      <h2>Common questions</h2>
+    </div>
+    <div class="faq reveal" id="faqList">
+      <div class="faq-item"><div class="faq-q">What is Adhyay Foundation? <span class="chev">+</span></div><div class="faq-a"><p>Adhyay Foundation is a guided thinking and mental clarity platform designed to help people understand their emotions, organize their thoughts, and gain clarity through interactive reflection sessions.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Is Adhyay a meditation app? <span class="chev">+</span></div><div class="faq-a"><p>No. Unlike traditional meditation apps, Adhyay focuses on guided thinking, reflection, emotional understanding, and practical clarity instead of only relaxation.</p></div></div>
+      <div class="faq-item"><div class="faq-q">How does Adhyay work? <span class="chev">+</span></div><div class="faq-a"><p>You first select how you're feeling through "What's Your Adhyay Today?" — the platform then recommends a suitable session based on your emotional state.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Does Adhyay replace therapy? <span class="chev">+</span></div><div class="faq-a"><p>No. Adhyay is a self-guided clarity platform and not a replacement for professional medical or mental health treatment.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Who can use Adhyay? <span class="chev">+</span></div><div class="faq-a"><p>Anyone can use Adhyay, especially students and young people who want emotional clarity, calmness, and a better understanding of their thoughts.</p></div></div>
+      <div class="faq-item"><div class="faq-q">What is the meaning of "Adhyay"? <span class="chev">+</span></div><div class="faq-a"><p>"Adhyay" means "chapter." It represents the different emotional chapters in a person's life and the journey toward clarity and self-understanding.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><svg class="logo-mark" width="30" height="30" style="color:#fbf8f1"><use href="#adhyay-logo"/></svg> Adhyay Foundation</div>
+        <p style="max-width:280px;font-size:14px;line-height:1.7;">A quiet space to understand yourself. Guided sessions to help you find clarity, calm, and direction.</p>
+      </div>
+      <div><h5>Product</h5><ul><li><a onclick="document.getElementById('sessions').scrollIntoView({behavior:'smooth'})">Choose a Session</a></li><li><a href="#how">How it works</a></li><li><a onclick="openApp('dashboard')">Dashboard</a></li></ul></div>
+      <div><h5>Company</h5><ul><li><a href="#about">About</a></li><li><a href="#faq">FAQ</a></li><li><a onclick="alert('Contact: hello@adhyayfoundation.org')">Contact</a></li></ul></div>
+      <div><h5>Legal</h5><ul><li><a onclick="return false;">Privacy Policy</a></li><li><a onclick="return false;">Terms of Service</a></li><li><a onclick="return false;">Community Guidelines</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Adhyay Foundation. All rights reserved.</span>
+      <span>"Choose what you're feeling. Adhyay guides you to clarity."</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ APP OVERLAY ============ -->
+<div class="app-overlay" id="appOverlay">
+  <div class="app-topbar">
+    <a class="brand" style="font-size:16px" href="#"><svg class="logo-mark" width="26" height="26" style="color:var(--forest)"><use href="#adhyay-logo"/></svg> Adhyay</a>
+    <button class="close-app" onclick="closeApp()">✕</button>
+  </div>
+  <div class="app-progress-track"><div class="app-progress-bar" id="progressBar"></div></div>
+
+  <!-- STAGE: emotion -->
+  <div class="app-stage" data-stage="emotion">
+    <div class="stage-inner">
+      <p class="step-label">Step 1 · Emotional check-in</p>
+      <h2>What's your Adhyay today?</h2>
+      <p class="sub">Let's understand how you're feeling right now.</p>
+      <div class="choice-list" id="emotionList"></div>
+    </div>
+  </div>
+
+  <!-- STAGE: followup -->
+  <div class="app-stage" data-stage="followup">
+    <div class="stage-inner">
+      <p class="step-label">Step 2 · Follow-up</p>
+      <h2 id="followupQ">What is making it feel this way?</h2>
+      <p class="sub">This helps us understand what you need right now.</p>
+      <div class="choice-list" id="followupList"></div>
+      <div class="stage-nav"><button class="btn btn-ghost btn-sm" onclick="goStage('emotion')">← Back</button><div></div></div>
+    </div>
+  </div>
+
+  <!-- STAGE: recommend -->
+  <div class="app-stage" data-stage="recommend">
+    <div class="stage-inner">
+      <p class="step-label">Step 3 · Recommendation</p>
+      <h2>Based on what you shared, this session may help</h2>
+      <div class="rec-card" id="recCard" style="margin-top:20px"></div>
+      <div class="stage-nav" style="justify-content:center">
+        <button class="btn btn-ghost btn-sm" onclick="goStage('emotion')">Back to home</button>
+        <button class="btn btn-primary" id="recStartBtn">Start Session</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE: breathe -->
+  <div class="app-stage" data-stage="breathe">
+    <div class="stage-inner">
+      <p class="step-label">Opening · Breathing</p>
+      <h2>Take a deep breath…</h2>
+      <p class="sub" id="breatheLine">You don't have to carry everything right now.</p>
+      <div class="breathe-wrap">
+        <div class="breathe-ring"><div class="breathe-core"><div class="phase" id="breathPhase">Inhale</div><div class="count" id="breathCount">4</div></div></div>
+        <div class="ambient-row">
+          <button class="ambient-btn" data-a="rain">🌧 Rain</button>
+          <button class="ambient-btn" data-a="ocean">🌊 Ocean</button>
+          <button class="ambient-btn" data-a="forest">🌲 Forest</button>
+          <button class="ambient-btn" data-a="wind">🍃 Wind</button>
+          <button class="ambient-btn" data-a="water">💧 Water</button>
+          <button class="ambient-btn" data-a="piano">🎹 Piano</button>
+        </div>
+      </div>
+      <div class="stage-nav" style="justify-content:center">
+        <button class="btn btn-primary" onclick="goStage('reflectChoice')">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE: reflectChoice -->
+  <div class="app-stage" data-stage="reflectChoice">
+    <div class="stage-inner">
+      <p class="step-label">Reflection</p>
+      <h2 id="rcQ">Question</h2>
+      <p class="sub" id="rcSub"></p>
+      <div class="choice-list" id="rcList"></div>
+      <div class="stage-nav"><button class="btn btn-ghost btn-sm" onclick="goStage('breathe')">← Back</button><div></div></div>
+    </div>
+  </div>
+
+  <!-- STAGE: reflectText -->
+  <div class="app-stage" data-stage="reflectText">
+    <div class="stage-inner">
+      <p class="step-label">Reflection · One quick thought</p>
+      <h2>Just one question, in your own words</h2>
+      <p class="sub">Type freely, tap a starting point below, or skip straight past — whatever feels right.</p>
+      <div id="textQWrap"></div>
+      <div class="stage-nav">
+        <button class="btn btn-ghost btn-sm" onclick="goStage('reflectChoice')">← Back</button>
+        <div style="display:flex;gap:10px">
+          <button class="btn btn-text" onclick="goStage('exercise')">Skip this</button>
+          <button class="btn btn-primary btn-sm" onclick="goStage('exercise')">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE: exercise -->
+  <div class="app-stage" data-stage="exercise">
+    <div class="stage-inner wide">
+      <p class="step-label">Reflection · Exercise</p>
+      <h2 id="exTitle">Exercise</h2>
+      <p class="sort-hint" id="exSub"></p>
+      <div id="exBody"></div>
+      <div class="stage-nav" style="justify-content:center">
+        <button class="btn btn-primary" onclick="buildInsight();goStage('insight')">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE: insight -->
+  <div class="app-stage" data-stage="insight">
+    <div class="stage-inner">
+      <p class="step-label">Insight</p>
+      <h2>Here's a perspective for you</h2>
+      <div class="insight-card">
+        <span class="quote-mark">"</span>
+        <p class="insight-text" id="insightText"></p>
+        <span class="insight-tag">Focus brings clarity. Clarity brings calm.</span>
+      </div>
+      <div class="stage-nav" style="justify-content:center;margin-top:30px">
+        <button class="btn btn-primary" onclick="goStage('action')">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE: action -->
+  <div class="app-stage" data-stage="action">
+    <div class="stage-inner">
+      <p class="step-label">Micro action</p>
+      <h2 id="actionTitle">One small action</h2>
+      <div class="action-card">
+        <div class="ic-big">✓</div>
+        <h3 id="actionDesc">—</h3>
+        <p>You don't need to do everything today. Just this — one small, real step.</p>
+      </div>
+      <div class="stage-nav" style="justify-content:center">
+        <button class="btn btn-primary" onclick="goStage('complete')">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE: complete -->
+  <div class="app-stage" data-stage="complete">
+    <div class="stage-inner complete-wrap" id="completeLeaves">
+      <div class="check-badge">✓</div>
+      <h2 id="completeLine">You showed up for yourself today.</h2>
+      <p class="sub">You didn't solve everything, but you created space. That's where clarity begins.</p>
+      <div class="stage-nav" style="justify-content:center;gap:14px;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="saveSessionRecord()"><span id="saveBtnLabel">📖 Save Reflection</span></button>
+        <button class="btn btn-ghost" onclick="goStage('emotion');resetSession();">🏠 Back to Home</button>
+        <button class="btn" style="background:var(--gold-soft);color:var(--forest-deep)" onclick="openApp('signup')">Join Adhyay</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE: signup -->
+  <div class="app-stage" data-stage="signup">
+    <div class="stage-inner" style="max-width:440px">
+      <p class="step-label">Begin your journey</p>
+      <h2>Create an account</h2>
+      <p class="sub">Save your reflections and track your growth over time.</p>
+      <div class="auth-card" id="authCard">
+        <div id="authForm">
+          <div class="auth-field" id="fld-name">
+            <label>Name</label>
+            <input type="text" id="su-name" placeholder="Your name">
+            <div class="auth-error">Please tell us your name.</div>
+          </div>
+          <div class="auth-field" id="fld-email">
+            <label>Email</label>
+            <input type="email" id="su-email" placeholder="your@email.com">
+            <div class="auth-error">Please enter a valid email address.</div>
+          </div>
+          <div class="auth-field" id="fld-password">
+            <label>Password</label>
+            <input type="password" id="su-password" placeholder="Create a password (min 8 characters)">
+            <div class="auth-error">Password must be at least 8 characters.</div>
+          </div>
+          <button class="btn btn-primary" style="width:100%" onclick="submitSignup()">Sign up</button>
+          <p style="text-align:center;font-size:12.5px;color:var(--ink-soft);margin-top:16px">Saved securely on this device — no data leaves your browser in this preview.</p>
+        </div>
+        <div id="authSuccess" class="auth-success" style="display:none">
+          <div class="check-badge">✓</div>
+          <h3>You're all set, <span id="authSuccessName">there</span>.</h3>
+          <p>Your account has been saved, and your reflections will now be kept between visits on this device.</p>
+          <button class="btn btn-primary" style="width:100%;margin-top:6px" onclick="openApp('dashboard')">Go to your dashboard</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE: dashboard -->
+  <div class="app-stage" data-stage="dashboard">
+    <div class="stage-inner wide" style="text-align:left">
+      <p class="step-label" style="text-align:center">Your journey</p>
+      <h2 style="text-align:center;margin-bottom:34px">Your growth, visualised</h2>
+      <div class="dash-grid">
+        <div class="dash-card" style="text-align:center">
+          <h4 style="text-align:center">Your Adhyay tree</h4>
+          <svg class="tree-svg" viewBox="0 0 200 220" id="treeSvg">
+            <path d="M100 220 L100 130" stroke="#6b7654" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="100" cy="110" r="55" fill="#8ba48a" opacity="0.25" id="treeCanopyBg"/>
+          </svg>
+          <p style="text-align:center;color:var(--ink-soft);font-size:13px;margin-top:10px" id="treeCaption">Complete sessions to grow your tree.</p>
+        </div>
+        <div class="dash-card">
+          <h4>Today's mood</h4>
+          <div class="mood-row" id="moodRow">
+            <div class="mood-dot" data-m="😞">😞</div>
+            <div class="mood-dot" data-m="😕">😕</div>
+            <div class="mood-dot" data-m="😐">😐</div>
+            <div class="mood-dot" data-m="🙂">🙂</div>
+            <div class="mood-dot" data-m="😊">😊</div>
+          </div>
+          <div class="stat-row" style="margin-top:20px"><span>Sessions completed</span><strong id="statSessions">0</strong></div>
+          <div class="stat-row"><span>Current streak</span><strong id="statStreak">0 days</strong></div>
+          <div class="stat-row"><span>Most reflected on</span><strong id="statTop">—</strong></div>
+        </div>
+        <div class="dash-card" style="grid-column:1/-1">
+          <h4>Recent sessions</h4>
+          <div id="sessionListDash"><div class="empty-msg">No sessions yet — your first one is a click away.</div></div>
+        </div>
+      </div>
+      <div class="stage-nav" style="justify-content:center">
+        <button class="btn btn-primary" onclick="goStage('emotion');resetSession();">Start Another Session</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ============ SCROLL REVEAL ============ */
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+},{threshold:.15});
+revealEls.forEach(el=>io.observe(el));
+
+/* ============ HERO LEAVES ============ */
+const leafField = document.getElementById('leafField');
+for(let i=0;i<14;i++){
+  const l = document.createElement('div');
+  l.className='leaf'; l.textContent = i%2===0 ? '🍃':'🌿';
+  l.style.left = Math.random()*100+'%';
+  l.style.bottom = '-40px';
+  l.style.fontSize = (12+Math.random()*14)+'px';
+  l.style.animationDuration = (10+Math.random()*10)+'s';
+  l.style.animationDelay = (Math.random()*10)+'s';
+  leafField.appendChild(l);
+}
+
+/* ============ FAQ ACCORDION ============ */
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.querySelector('.faq-q').addEventListener('click', ()=>{
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!open) item.classList.add('open');
+  });
+});
+
+/* ============ SESSION DATA ============ */
+const SESSIONS = {
+  unburden: {
+    name:'Unburden', focus:'Stress / Overwhelm', duration:'8–10 mins',
+    cardBlurb:"Release the mental weight you've been carrying. Sort through what's urgent, what can wait, and what you can let go.",
+    why:"You've been carrying too much at once, and it's starting to feel like everything is equally urgent. This session creates space to separate what truly needs you now from what can wait.",
+    whatToExpect:"A safe place to name what's weighing on you, sort your thoughts by real priority, and leave with one lighter step.",
+    breathingLine:"Breathe in permission. Breathe out what you've been holding.",
+    choiceQ:{ q:"What do you need to release?", sub:"Choose what feels closest to true.",
+      options:["Anger I've been suppressing","Sadness I haven't processed","Frustration with myself","Resentment toward someone","Everything I've been pretending is fine"]},
+    textQs:[{q:"What would you say if no one was listening?", chips:["I'm carrying too much right now","I just need this to stop for a bit","I'm angry and I don't want to be","I'm tired of holding it together"]}],
+    exercise:{ type:'sort', title:'Sort your thoughts', sub:'Click each thought to assign it into a category. Not everything needs to be done now.',
+      cols:['Do Now','Do Later','Let Go'], items:['Finish work project','Reply to messages','Worry about tomorrow','Fix that mistake','Plan next week'] },
+    insight:"You seem mentally overloaded because too many things feel equally urgent. But not every thought deserves immediate attention. Clarity begins when you separate pressure from priority.",
+    action:"Write a letter you'll never send to someone you're upset with.",
+    closing:"Releasing doesn't mean forgetting. It means freeing yourself."
+  },
+  clarityloop: {
+    name:'Clarity Loop', focus:'Overthinking', duration:'9 mins',
+    cardBlurb:"Untangle racing thoughts and find the next clear step. Move from mental noise to focused direction.",
+    why:"Your mind has been replaying the same thoughts, searching for an answer it already circled past. This session slows the loop down so one thought can actually finish.",
+    whatToExpect:"A structured way to catch the repeating thought, question it gently, and land on one next step instead of ten open loops.",
+    breathingLine:"Breathe in stillness. Breathe out the loop.",
+    choiceQ:{ q:"Which loop feels closest to yours?", sub:"Choose what feels closest to true.",
+      options:["Replaying a conversation on repeat","Imagining every worst-case outcome","Trying to plan for every possibility","Checking the same decision over and over","All of it, all at once"]},
+    textQs:[{q:"What thought keeps returning, almost word for word?", chips:["Did I make the right call","What if this goes wrong","I keep replaying what I said","I can't stop planning for every outcome"]}],
+    exercise:{ type:'sort', title:'Untangle the thread', sub:'Click each thought to sort it by whether it truly needs your attention today.',
+      cols:['Needs Action','Needs Time','Not Real Yet'], items:['Did I say the wrong thing','What if it goes badly','Should I message them again','Am I making the right call','What will they think'] },
+    insight:"Your mind is trying to solve something that doesn't have a finish line yet. Overthinking often means asking a question your mind isn't ready to answer. One honest look at a time is enough.",
+    action:"Set a 10-minute timer, write the thought down once, then close the notebook.",
+    closing:"Quiet doesn't mean the thought is gone. It means you're no longer carrying it alone."
+  },
+  innervoicereset: {
+    name:'Inner Voice Reset', focus:'Self-doubt', duration:'8 mins',
+    cardBlurb:"Soften harsh self-talk and speak to yourself with compassion. Shift from criticism to kindness.",
+    why:"The voice in your head has been harder on you than a friend ever would be. This session helps you notice that voice and answer it with something truer.",
+    whatToExpect:"A chance to hear the criticism clearly, then rewrite it the way you'd speak to someone you love.",
+    breathingLine:"Breathe in kindness. Breathe out the criticism.",
+    choiceQ:{ q:"Where is the doubt loudest right now?", sub:"Choose what feels closest to true.",
+      options:["\u201cI'm not good enough\u201d","\u201cI always mess this up\u201d","\u201cEveryone else has it figured out\u201d","\u201cI don't deserve this\u201d","\u201cI'll disappoint someone\u201d"]},
+    textQs:[{q:"What's the harshest thing you've said to yourself today?", chips:["I'm not good enough","I always mess this up","I should be further along by now","Everyone else has it figured out"]}],
+    exercise:{ type:'rewrite', title:'Rewrite the voice', sub:'For each harsh thought, choose the kinder, truer version.',
+      pairs:[
+        {harsh:"I'm not good enough", options:["I'm still learning, and that's allowed","I should try harder"]},
+        {harsh:"I always mess this up", options:["I've gotten this right before, and I can again","I need to be more careful"]},
+        {harsh:"Everyone else has it figured out", options:["Everyone is figuring it out, just quietly","I'm behind everyone else"]}
+      ]},
+    insight:"That harsh voice isn't the truth — it's fear wearing the voice of judgment. The evidence in your life rarely matches how loud that voice gets. You're allowed to speak to yourself like someone worth encouraging.",
+    action:"Say one honest, kind sentence to yourself out loud before you go on with your day.",
+    closing:"You don't need to silence the voice completely. You just need a kinder one to speak louder."
+  },
+  clearpath: {
+    name:'Clear Path', focus:'Decision-making confusion', duration:'9 mins',
+    cardBlurb:"Find direction when you feel lost. You don't need the whole map—just the next step.",
+    why:"You're standing at a decision with too many voices and not enough clarity. This session isn't about choosing perfectly — it's about choosing the next honest step.",
+    whatToExpect:"A way to separate what you actually want from what you think you should want, and narrow it to one direction.",
+    breathingLine:"Breathe in clarity. Breathe out the noise of other people's opinions.",
+    choiceQ:{ q:"What kind of confusion is this?", sub:"Choose what feels closest to true.",
+      options:["Too many options to choose from","Conflicting advice from people I trust","Fear of choosing wrong","No option feels fully right","Time pressure to decide"]},
+    textQs:[{q:"If you weren't afraid of being wrong, what would you choose?", chips:["The option that feels like relief","The one I keep avoiding","I honestly don't know yet","The safer choice, and I know it"]}],
+    exercise:{ type:'sort', title:'Narrow the path', sub:'Click each option to sort it by how it actually feels, not how it looks from outside.',
+      cols:['Feels Right','Feels Safe','Feels Like Pressure'], items:['Option A','Option B','Option C','Staying the same','Waiting longer'] },
+    insight:"You don't need the whole map — you need the next honest step. Clarity in a decision usually comes after one small move, not before it. Trust the direction that feels like relief, not the one that feels like performance.",
+    action:"Write down the one next step you'd take if you already knew you'd made the right call.",
+    closing:"You don't need certainty to move forward. You need one clear step."
+  },
+  letitout: {
+    name:'Let It Out', focus:'Emotional heaviness', duration:'8–10 mins',
+    cardBlurb:"Create space to release emotions you've been holding. Permission to feel without judgment.",
+    why:"You've been holding emotions in for too long. This session creates a safe space to release what you've been carrying.",
+    whatToExpect:"Permission to feel without judgment, and prompts to express what you've been suppressing.",
+    breathingLine:"Breathe in space. Breathe out what's heavy.",
+    choiceQ:{ q:"What does the heaviness feel like?", sub:"This helps us understand what you need right now.",
+      options:["Deep sadness or grief","Constant worry or anxiety","Emotional exhaustion","Numbness or feeling empty","A weight I can't quite name"]},
+    textQs:[{q:"What happened that you haven't fully let yourself feel?", chips:["Something small that hurt more than it should have","A loss I haven't processed","I don't want to say it out loud yet","I just feel empty about it"]}],
+    exercise:{ type:'choice2', title:'What do you need to feel?', sub:'Choose whatever feels closest to true right now — there is no wrong answer.',
+      options:["To be understood","To rest without guilt","To cry without explaining why","To be told it's not my fault","To simply not be okay for a while"] },
+    insight:"You're feeling this heaviness because it's real, not because you're being dramatic or weak. Heaviness doesn't need to be fixed today — it needs to be felt, once, without an audience. That's how it starts to lift.",
+    action:"Let yourself cry, rest, or sit quietly for ten minutes without needing to be productive.",
+    closing:"Feeling heavy doesn't mean you're broken. It means you're carrying something real — and you don't have to carry it alone."
+  }
+};
+const SESSION_ORDER = ['unburden','clarityloop','innervoicereset','clearpath','letitout'];
+
+const EMOTIONS = [
+  {id:'overwhelmed', ic:'🌊', title:'Everything feels too much', sub:'Tasks, thoughts, and emotions are piling up', session:'unburden',
+   followupQ:'What is making it feel overwhelming?',
+   followups:[{ic:'📋',t:'Too many tasks',s:"Can't keep up"},{ic:'⛰',t:'Pressure to do well',s:'High expectations'},{ic:'🧭',t:'No clear direction',s:"Don't know where to start"},{ic:'✏️',t:'Everything at once',s:'All of the above'}]},
+  {id:'overthinking', ic:'🌀', title:"My mind won't stop thinking", sub:"Thoughts are looping and I can't quiet them", session:'clarityloop',
+   followupQ:'What does the thinking feel like?',
+   followups:[{ic:'🔁',t:'The same thought on loop',s:'Repeating worry'},{ic:'🌙',t:'Loudest at night',s:"Can't switch off"},{ic:'🧩',t:'Replaying past conversations',s:'What I should have said'},{ic:'❓',t:'Imagining worst cases',s:'What if it goes wrong'}]},
+  {id:'selfdoubt', ic:'🍃', title:'I keep doubting myself', sub:'Second-guessing decisions and feeling uncertain', session:'innervoicereset',
+   followupQ:'Where is the doubt showing up?',
+   followups:[{ic:'💼',t:'At work or school',s:'Feeling not good enough'},{ic:'🎯',t:'About a decision',s:'Second-guessing myself'},{ic:'🫂',t:'In a relationship',s:'Worried I\u2019m too much or too little'},{ic:'🪞',t:'About who I am',s:'General self-worth'}]},
+  {id:'confused', ic:'◌', title:'I feel confused', sub:'Too many options, no clear direction', session:'clearpath',
+   followupQ:'What kind of confusion is this?',
+   followups:[{ic:'🔀',t:'Too many options',s:"Can't choose between paths"},{ic:'🧭',t:'No clear direction',s:"Don't know what I want"},{ic:'⚖️',t:'Conflicting advice',s:'Everyone says something different'},{ic:'⏳',t:'Time pressure',s:'Need to decide soon'}]},
+  {id:'heavy', ic:'☁', title:'I feel emotionally heavy', sub:'Carrying sadness, worry, or unexplained heaviness', session:'letitout',
+   followupQ:'What does the heaviness feel like?',
+   followups:[{ic:'😔',t:'Deep sadness or grief',s:'A specific event or loss'},{ic:'🌫',t:'Constant worry or anxiety',s:"Can't quite settle"},{ic:'😴',t:'Emotional exhaustion',s:'Tired, not just sleepy'},{ic:'💭',t:'A weight I can\u2019t quite name',s:'Just a low feeling'}]}
+];
+
+let state = { sessionId:null, choiceIdx:null, textAnswers:[''], exerciseDone:false, exerciseState:{} };
+
+/* ---------- render landing previews ---------- */
+function renderSessionsGrid(){
+  const wrap = document.getElementById('sessionsGrid'); wrap.innerHTML='';
+  SESSION_ORDER.forEach(id=>{
+    const s = SESSIONS[id];
+    const c = document.createElement('div'); c.className='session-card';
+    c.innerHTML = `<span class="tag">${s.focus}</span><h3>${s.name}</h3><p>${s.cardBlurb}</p><button onclick="beginDirectSession('${id}')">Begin session →</button>`;
+    wrap.appendChild(c);
+  });
+}
+renderSessionsGrid();
+
+function renderEmotionCardsPreview(){
+  const wrap = document.getElementById('emotionCardsPreview'); wrap.innerHTML='';
+  EMOTIONS.forEach(e=>{
+    const d = document.createElement('div'); d.className='emo-card'; d.onclick=()=>openApp('emotion');
+    d.innerHTML = `<div class="ic">${e.ic}</div><h4>${e.title}</h4><span>${e.sub}</span>`;
+    wrap.appendChild(d);
+  });
+}
+renderEmotionCardsPreview();
+
+function renderEmotionList(){
+  const wrap = document.getElementById('emotionList'); wrap.innerHTML='';
+  EMOTIONS.forEach((e,i)=>{
+    const d = document.createElement('div');
+    d.className='choice-card'; d.onclick=()=>selectEmotion(i);
+    d.innerHTML = `<div class="ic">${e.ic}</div><div class="txt"><strong>${e.title}</strong><span>${e.sub}</span></div>`;
+    wrap.appendChild(d);
+  });
+}
+renderEmotionList();
+
+function selectEmotion(i){
+  const e = EMOTIONS[i];
+  state.sessionId = e.session;
+  document.getElementById('followupQ').textContent = e.followupQ;
+  const wrap = document.getElementById('followupList'); wrap.innerHTML='';
+  e.followups.forEach((f)=>{
+    const d = document.createElement('div');
+    d.className='choice-card'; d.onclick=()=>{ renderRecommendation(); goStage('recommend'); };
+    d.innerHTML = `<div class="ic">${f.ic}</div><div class="txt"><strong>${f.t}</strong><span>${f.s}</span></div>`;
+    wrap.appendChild(d);
+  });
+  goStage('followup');
+}
+
+function renderRecommendation(){
+  const s = SESSIONS[state.sessionId];
+  document.getElementById('recCard').innerHTML = `
+    <div class="rec-visual"><svg width="60" height="60" viewBox="0 0 100 100" style="color:#fbf8f1"><use href="#adhyay-logo"/></svg></div>
+    <div class="rec-body">
+      <h3>${s.name}</h3>
+      <span class="rec-focus">${s.focus}</span>
+      <div class="rec-block"><h5>Why this session?</h5><p>${s.why}</p></div>
+      <div class="rec-block"><h5>What to expect</h5><p>${s.whatToExpect}</p></div>
+      <div class="rec-meta"><span>⏱ ${s.duration}</span><span>◈ Guided Reflection</span></div>
+    </div>`;
+  document.getElementById('recStartBtn').onclick = ()=>goStage('breathe');
+}
+
+function beginDirectSession(id){
+  state.sessionId = id;
+  resetSessionAnswers();
+  openApp('breathe');
+}
+
+/* ---------- breathing ---------- */
+let breathInterval=null;
+function startBreath(){
+  const s = SESSIONS[state.sessionId];
+  document.getElementById('breatheLine').textContent = s ? s.breathingLine : "You don't have to carry everything right now.";
+  const phases=[{p:'Inhale',d:4},{p:'Hold',d:4},{p:'Exhale',d:4}];
+  let pi=0, t=phases[0].d;
+  document.getElementById('breathPhase').textContent=phases[0].p;
+  document.getElementById('breathCount').textContent=t;
+  clearInterval(breathInterval);
+  breathInterval = setInterval(()=>{
+    t--;
+    if(t<=0){ pi=(pi+1)%phases.length; t=phases[pi].d; document.getElementById('breathPhase').textContent=phases[pi].p; }
+    document.getElementById('breathCount').textContent=t;
+  },1000);
+}
+document.querySelectorAll('.ambient-btn').forEach(b=>{
+  b.addEventListener('click',()=>{ b.classList.toggle('active'); });
+});
+
+/* ---------- reflect choice ---------- */
+function renderReflectChoice(){
+  const s = SESSIONS[state.sessionId];
+  document.getElementById('rcQ').textContent = s.choiceQ.q;
+  document.getElementById('rcSub').textContent = s.choiceQ.sub;
+  const wrap = document.getElementById('rcList'); wrap.innerHTML='';
+  s.choiceQ.options.forEach((opt,i)=>{
+    const d = document.createElement('div'); d.className='plain-choice';
+    d.textContent = opt;
+    d.onclick=()=>{ state.choiceIdx=i; document.querySelectorAll('#rcList .plain-choice').forEach(x=>x.classList.remove('selected')); d.classList.add('selected'); setTimeout(()=>goStage('reflectText'),250); };
+    wrap.appendChild(d);
+  });
+}
+
+/* ---------- reflect text ---------- */
+function renderTextQs(){
+  const s = SESSIONS[state.sessionId];
+  const wrap = document.getElementById('textQWrap'); wrap.innerHTML='';
+  s.textQs.forEach((q,i)=>{
+    const block = document.createElement('div'); block.className='text-q-block';
+    block.innerHTML = `<label>${q.q}</label><textarea class="reflect-box" style="min-height:90px" id="tq_${i}" placeholder="Your thoughts... or tap a starting point below">${state.textAnswers[i]||''}</textarea>`;
+    if(q.chips && q.chips.length){
+      const chipRow = document.createElement('div'); chipRow.className='chip-row';
+      q.chips.forEach(c=>{
+        const chip = document.createElement('button'); chip.type='button'; chip.className='chip-btn'; chip.textContent=c;
+        chip.onclick=()=>{ document.getElementById('tq_'+i).value = c; state.textAnswers[i]=c; };
+        chipRow.appendChild(chip);
+      });
+      block.appendChild(chipRow);
+    }
+    wrap.appendChild(block);
+  });
+}
+function captureTextAnswers(){
+  const s = SESSIONS[state.sessionId];
+  s.textQs.forEach((q,i)=>{ const el=document.getElementById('tq_'+i); if(el) state.textAnswers[i]=el.value; });
+}
+
+/* ---------- exercise ---------- */
+function renderExercise(){
+  const s = SESSIONS[state.sessionId]; const ex = s.exercise;
+  document.getElementById('exTitle').textContent = ex.title;
+  document.getElementById('exSub').textContent = ex.sub;
+  const body = document.getElementById('exBody'); body.innerHTML='';
+
+  if(ex.type==='sort'){
+    const cols = document.createElement('div'); cols.className='sort-cols';
+    ex.cols.forEach(c=>{ const col=document.createElement('div'); col.className='sort-col'; col.innerHTML=`<h5>${c}</h5><div class="placed-wrap" data-col="${c}"></div>`; cols.appendChild(col); });
+    body.appendChild(cols);
+    const pillsWrap = document.createElement('div');
+    ex.items.forEach((item,ii)=>{
+      const row = document.createElement('div'); row.className='thought-row';
+      const pills = document.createElement('div'); pills.className='thought-pills';
+      ex.cols.forEach(c=>{
+        const pill = document.createElement('button'); pill.type='button'; pill.className='thought-pill';
+        pill.textContent = `${item} → ${c}`;
+        pill.onclick = ()=>{
+          row.querySelectorAll('.thought-pill').forEach(p=>p.classList.add('used'));
+          const target = cols.querySelector(`.placed-wrap[data-col="${c}"]`);
+          const tag = document.createElement('div'); tag.className='placed'; tag.textContent = item;
+          target.appendChild(tag);
+        };
+        pills.appendChild(pill);
+      });
+      row.appendChild(pills); pillsWrap.appendChild(row);
+    });
+    body.appendChild(pillsWrap);
+  }
+  else if(ex.type==='rewrite'){
+    ex.pairs.forEach((pair,pi)=>{
+      const block = document.createElement('div'); block.className='text-q-block';
+      block.innerHTML = `<label>"${pair.harsh}"</label>`;
+      const list = document.createElement('div'); list.className='choice-list';
+      pair.options.forEach(opt=>{
+        const d = document.createElement('div'); d.className='plain-choice'; d.textContent=opt;
+        d.onclick=()=>{ list.querySelectorAll('.plain-choice').forEach(x=>x.classList.remove('selected')); d.classList.add('selected'); };
+        list.appendChild(d);
+      });
+      block.appendChild(list); body.appendChild(block);
+    });
+  }
+  else if(ex.type==='choice2'){
+    const list = document.createElement('div'); list.className='choice-list';
+    ex.options.forEach(opt=>{
+      const d = document.createElement('div'); d.className='plain-choice'; d.textContent=opt;
+      d.onclick=()=>{ list.querySelectorAll('.plain-choice').forEach(x=>x.classList.remove('selected')); d.classList.add('selected'); };
+      list.appendChild(d);
+    });
+    body.appendChild(list);
+  }
+}
+
+/* ---------- insight ---------- */
+function buildInsight(){
+  captureTextAnswers();
+  const s = SESSIONS[state.sessionId];
+  document.getElementById('insightText').textContent = s.insight;
+}
+
+/* ---------- action / complete ---------- */
+function renderActionAndComplete(){
+  const s = SESSIONS[state.sessionId];
+  document.getElementById('actionDesc').textContent = s.action;
+  document.getElementById('completeLine').textContent = s.closing;
+}
+
+/* ---------- signup ---------- */
+function validateEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+function submitSignup(){
+  const nameEl = document.getElementById('su-name');
+  const emailEl = document.getElementById('su-email');
+  const passEl = document.getElementById('su-password');
+  const name = nameEl.value.trim();
+  const email = emailEl.value.trim();
+  const pass = passEl.value;
+
+  let valid = true;
+  const setError = (fieldId, inputEl, hasError)=>{
+    document.getElementById(fieldId).classList.toggle('has-error', hasError);
+    inputEl.classList.toggle('error', hasError);
+    if(hasError) valid = false;
+  };
+  setError('fld-name', nameEl, name.length===0);
+  setError('fld-email', emailEl, !validateEmail(email));
+  setError('fld-password', passEl, pass.length<8);
+
+  if(!valid) return;
+
+  localStorage.setItem('adhyay_user', JSON.stringify({ name, email, joined: new Date().toISOString() }));
+  document.getElementById('authForm').style.display='none';
+  document.getElementById('authSuccess').style.display='flex';
+  document.getElementById('authSuccessName').textContent = name;
+}
+function resetSignupForm(){
+  ['su-name','su-email','su-password'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  ['fld-name','fld-email','fld-password'].forEach(id=>document.getElementById(id)?.classList.remove('has-error'));
+  document.getElementById('authForm').style.display='block';
+  document.getElementById('authSuccess').style.display='none';
+}
+['su-name','su-email','su-password'].forEach(id=>{
+  document.getElementById(id)?.addEventListener('input', ()=>{
+    document.getElementById(id).classList.remove('error');
+    document.getElementById(id).closest('.auth-field').classList.remove('has-error');
+  });
+});
+
+/* ============ STAGE NAV ============ */
+const STAGE_PROGRESS = {emotion:10,followup:20,recommend:30,breathe:42,reflectChoice:54,reflectText:64,exercise:76,insight:86,action:94,complete:100,signup:0,dashboard:0};
+function goStage(name){
+  document.querySelectorAll('.app-stage').forEach(s=>s.classList.remove('active'));
+  document.querySelector(`.app-stage[data-stage="${name}"]`).classList.add('active');
+  document.getElementById('progressBar').style.width = (STAGE_PROGRESS[name]||0)+'%';
+  document.getElementById('appOverlay').scrollTo({top:0,behavior:'instant'});
+  if(name==='breathe') startBreath();
+  if(name==='reflectChoice') renderReflectChoice();
+  if(name==='reflectText') renderTextQs();
+  if(name==='exercise') renderExercise();
+  if(name==='action' || name==='complete') renderActionAndComplete();
+  if(name==='complete'){ spawnCompleteLeaves(); document.getElementById('saveBtnLabel').textContent='📖 Save Reflection'; }
+  if(name==='dashboard'){ renderDashboard(); }
+  if(name==='signup'){
+    const existing = JSON.parse(localStorage.getItem('adhyay_user')||'null');
+    if(existing){
+      document.getElementById('authForm').style.display='none';
+      document.getElementById('authSuccess').style.display='flex';
+      document.getElementById('authSuccessName').textContent = existing.name;
+    } else {
+      resetSignupForm();
+    }
+  }
+}
+
+function spawnCompleteLeaves(){
+  const host = document.getElementById('completeLeaves');
+  host.querySelectorAll('.float-leaf').forEach(n=>n.remove());
+  for(let i=0;i<10;i++){
+    const l = document.createElement('div'); l.className='float-leaf'; l.textContent='🍃';
+    l.style.left = (Math.random()*100)+'%'; l.style.bottom='-20px';
+    l.style.animationDuration=(6+Math.random()*6)+'s'; l.style.animationDelay=(Math.random()*3)+'s';
+    host.appendChild(l);
+  }
+}
+
+function resetSessionAnswers(){
+  state.choiceIdx=null; state.textAnswers=[''];
+}
+function resetSession(){
+  state.sessionId=null; resetSessionAnswers();
+}
+
+/* ============ PERSISTENCE ============ */
+function saveSessionRecord(){
+  const s = SESSIONS[state.sessionId]; if(!s) return;
+  const sessions = JSON.parse(localStorage.getItem('adhyay_sessions')||'[]');
+  sessions.unshift({ date: new Date().toISOString(), name:s.name, focus:s.focus });
+  localStorage.setItem('adhyay_sessions', JSON.stringify(sessions.slice(0,50)));
+  document.getElementById('saveBtnLabel').textContent='✓ Saved';
+}
+
+function renderDashboard(){
+  const sessions = JSON.parse(localStorage.getItem('adhyay_sessions')||'[]');
+  document.getElementById('statSessions').textContent = sessions.length;
+  document.getElementById('statStreak').textContent = (sessions.length>0 ? Math.min(sessions.length,7):0)+' days';
+  const counts={};
+  sessions.forEach(s=>{counts[s.focus]=(counts[s.focus]||0)+1;});
+  const top = Object.keys(counts).sort((a,b)=>counts[b]-counts[a])[0];
+  document.getElementById('statTop').textContent = top || '—';
+
+  const listHost = document.getElementById('sessionListDash');
+  if(sessions.length===0){ listHost.innerHTML = '<div class="empty-msg">No sessions yet — your first one is a click away.</div>'; }
+  else {
+    listHost.innerHTML = sessions.slice(0,6).map(s=>{
+      const d = new Date(s.date);
+      return `<div class="session-item"><span>${s.name} <span style="color:var(--ink-soft)">· ${s.focus}</span></span><span style="color:var(--ink-soft)">${d.toLocaleDateString()}</span></div>`;
+    }).join('');
+  }
+
+  const canopy = document.getElementById('treeSvg');
+  canopy.querySelectorAll('.leaf-dot').forEach(n=>n.remove());
+  const n = Math.min(sessions.length, 30);
+  document.getElementById('treeCaption').textContent = n===0 ? 'Complete sessions to grow your tree.' : `Your tree has grown from ${n} completed session${n===1?'':'s'}.`;
+  for(let i=0;i<n;i++){
+    const ang = Math.random()*Math.PI*2; const rad = 10+Math.random()*45;
+    const cx = 100+Math.cos(ang)*rad; const cy = 110+Math.sin(ang)*rad*0.8;
+    const dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    dot.setAttribute('cx',cx); dot.setAttribute('cy',cy); dot.setAttribute('r', 3+Math.random()*3);
+    dot.setAttribute('fill', i%4===0 ? '#c99a4a' : '#1f3d2b'); dot.classList.add('leaf-dot');
+    canopy.appendChild(dot);
+  }
+}
+
+document.querySelectorAll('.mood-dot').forEach(d=>{
+  d.addEventListener('click',()=>{
+    document.querySelectorAll('.mood-dot').forEach(x=>x.classList.remove('selected'));
+    d.classList.add('selected');
+    localStorage.setItem('adhyay_mood_today', d.dataset.m);
+  });
+});
+
+/* ============ APP OPEN/CLOSE ============ */
+function openApp(stage){
+  document.getElementById('appOverlay').classList.add('active');
+  document.body.style.overflow='hidden';
+  goStage(stage||'emotion');
+}
+function closeApp(){
+  document.getElementById('appOverlay').classList.remove('active');
+  document.body.style.overflow='';
+}
+</script>
+</body>
+</html>
